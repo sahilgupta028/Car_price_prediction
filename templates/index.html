@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Analysis</title>
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            margin: 15px 0 5px;
+            color: #555;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="number"]:focus,
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #28a745;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <form action="{{ url_for('predict')}}" method="post">
+            <h2>Predictive Analysis</h2>
+
+            <h3>Year</h3>
+            <input id="first" name="Year" type="number" placeholder="Enter Year">
+
+            <h3>Showroom Price (in lakhs)</h3>
+            <input id="second" name="Present_Price" type="text" placeholder="Enter Showroom Price" required>
+
+            <h3>Kilometers Driven</h3>
+            <input id="third" name="Kms_Driven" type="text" placeholder="Enter Kilometers Driven" required>
+
+            <h3>Previous Owners</h3>
+            <input id="fourth" name="Owner" type="text" placeholder="Enter Number of Previous Owners" required>
+
+            <h3>Fuel Type</h3>
+            <select name="Fuel_Type_Petrol" id="fuel" required>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+            </select>
+
+            <h3>Seller Type</h3>
+            <select name="Seller_Type_Individual" id="resea" required>
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+            </select>
+
+            <h3>Transmission Type</h3>
+            <select name="Transmission_Mannual" id="research" required>
+                <option value="Manual">Manual</option>
+                <option value="Automatic">Automatic</option>
+            </select>
+
+            <button id="sub" type="submit">Calculate the Selling Price</button>
+
+        </form>
+
+        <div class="result">
+            <h3>{{ prediction_text }}</h3>
+        </div>
+    </div>
+
+</body>
+
+</html>
